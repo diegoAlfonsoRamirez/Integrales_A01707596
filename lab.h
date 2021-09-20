@@ -5,11 +5,11 @@
 class Lab{
 	private:
 		std::string name, job;
-		int age, range, time_y;
+		int age, range, timeY;
 		
 	public:
 		Lab();
-		Lab(std::string name, int range, int age, std::string job, int time_y);
+		Lab(std::string n, int r, int a, std::string j, int t);
 		
 		std::string getName();
 		std::string getJob();
@@ -18,6 +18,15 @@ class Lab{
 		int getTimeY();
 		
 };
+
+Lab::Lab(std::string n, int r, int a, std::string j, int t){
+	name = n;
+	range = r;
+	age = a;
+	job = j;
+	timeY = t;
+	
+}
 
 std::string Lab::getName(){
 	return name;
@@ -36,7 +45,7 @@ int Lab::getRange(){
 }
 
 int Lab::getTimeY(){
-	return time_y;
+	return timeY;
 }
 
 #endif

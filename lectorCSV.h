@@ -14,15 +14,15 @@ std::vector<Lab> csvReader(){
 	getline(file, line);
 	while(getline(file, line)){
 		std::stringstream stream(line);
-		std::string name, range, age, job, time_y;
+		std::string name, range, age, job, timeY;
 		getline(stream, name, delimitator);
 		getline(stream, range, delimitator);
 		getline(stream, age, delimitator);
 		getline(stream, job, delimitator);
-		getline(stream, time_y, delimitator);
+		getline(stream, timeY, delimitator);
 		
-		Lab *a = new Lab(name, std::stoi(range), std::stoi(age), job, std::stoi(time_y));
-		lab.push_back(*a);
+		Lab *c1 = new Lab(name, std::stoi(range), std::stoi(age), job, std::stoi(timeY));
+		lab.push_back(*c1);
 		
 	}
 	return lab;

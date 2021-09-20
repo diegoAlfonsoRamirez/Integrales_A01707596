@@ -46,11 +46,9 @@ template <class T>
 void Sort<T>::timeBubbleSort(std::vector<T> &v){
 	for(int i=v.size()-1; i>0; i--){
 		for(int j=0; j<i; j++){
-			if(v[j].getTimeY()>v[j+1].getRange()){
+			if(v[j].getTimeY()>v[j+1].getTimeY()){
 				swap(v, j, j+1);
 			}
 		}	
 	}
 }
-
-
