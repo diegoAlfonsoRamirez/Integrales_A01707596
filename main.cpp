@@ -36,7 +36,7 @@ int main(){
 		}
 		
 	}
-	std::cout << "\n [";
+	std::cout << "\n";
 	int k = 1;
 	for(int i = 0; i < readFile.size(); i++){
 		std::cout << " " << k << ". ";
@@ -44,6 +44,4 @@ int main(){
 		k += 1;
 
 	}
-	std::cout << " ]" << std::endl;
-	
 }
