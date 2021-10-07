@@ -38,6 +38,7 @@ public:
 	void iFirst(T);
 	void insertion(T);
 	bool empty() const;
+	void deleteAt(int);
 	std::string toString() const;
 	std::string toString_2() const;
 	std::string toString_3() const;
@@ -128,6 +129,18 @@ void DList<T>::insertion(T val){
 template <class T>
 bool DList<T>::empty() const{
 	return (head == 0);
+	
+}
+
+template <class T>
+void DList<T>::deleteAt(int a){
+	DLink<T> *p;
+	int b = 0;
+	p = head;
+	head = p->next;
+	head->previous = 0;
+	delete p;
+	size--;
 	
 }
 

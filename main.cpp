@@ -216,6 +216,9 @@ int main(){
 		for(int i = 0; i < readFile.size(); i++){
 			std::cout << " " << k << ". ";
 			std::cout << readFile[i].getName() << " - " << r.toString() << " - " << e.toString_2() << " - " << readFile[i].getJob() << " - " << t.toString_3() << std::endl;
+			r.deleteAt(0);
+			e.deleteAt(0);
+			t.deleteAt(0);
 			k += 1;
 			
 		}
