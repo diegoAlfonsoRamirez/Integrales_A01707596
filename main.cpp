@@ -2,6 +2,7 @@
 #include "list.h"
 #include "lectorCSV.h"
 #include "lab.h"
+#include "heap.h"
 #include <iostream>
 
 int main(){
@@ -14,6 +15,8 @@ int main(){
 	DList<int> e;
 	DList<int> r;
 	DList<int> t;
+	Heap<int> heap(20);
+	
 	for(int i = 0; i < readFile.size(); i++){
 		e.insertion(readFile[i].getAge());
 		
@@ -27,12 +30,20 @@ int main(){
 	for(int i = 0; i < readFile.size(); i++){
 		t.insertion(readFile[i].getTimeY());
 		
+	}	
+	
+	for(int i = 0; i < readFile.size(); i++){
+		if((readFile[i].getTimeY() != 0) && (readFile[i].getTimeY() != -1)){
+			heap.push(readFile[i].getTimeY());
+			
+		}		
 	}
 	
 	std::cout << "Bienvenido a la base de datos del laboratorio.\n";
 	std::cout << "Seleccione que desea hacer.\n";
 	std::cout << "1. Ordenar la base de datos.\n";
 	std::cout << "2. Buscar o actualizar un dato.\n";
+	std::cout << "3. Consultar el numero de empleados registrados.\n";
 	std::cout << "Pulse cualquier otra tecla para salir.\n";
 	
 	std::cin >> opt;
@@ -195,6 +206,12 @@ int main(){
 				
 		}
 			
+		case 3:
+		{
+			std::cout << "Empleados activos: " << heap.size() << std::endl;
+			
+		}
+		
 		default:
 			break;
 			
