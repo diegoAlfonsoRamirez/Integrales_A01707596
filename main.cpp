@@ -33,7 +33,7 @@ int main(){
 	}	
 	
 	for(int i = 0; i < readFile.size(); i++){
-		if((readFile[i].getTimeY() != 0) && (readFile[i].getTimeY() != -1)){
+		if(readFile[i].getRange() != -1){
 			heap.push(readFile[i].getTimeY());
 			
 		}		
