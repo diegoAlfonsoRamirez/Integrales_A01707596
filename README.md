@@ -2,12 +2,12 @@
 
 >Ejemplo 1: Buscar o actualizar un dato.
 > 
->Paso 1: Seleccionar la opción -> (2).
->Paso 2: Seleccionar una de las opciones disponibles -> Ejemplo - (1).
->Paso 3: Selecciona una de las opciones disponibles -> Ejemplo - (1).
->Paso 4: Introduce la posición del dato que deseas reemplazar -> Ejemplo - (2).
->Paso 5: Introduce el dato con el que deseas actualizar -> Ejemplo - (3).
->Paso 6: Pulse cualquier tecla para salir y ver la nueva lista.
+> Paso 1: Seleccionar la opción -> (2).
+> Paso 2: Seleccionar una de las opciones disponibles -> Ejemplo - (1).
+> Paso 3: Selecciona una de las opciones disponibles -> Ejemplo - (1).
+> Paso 4: Introduce la posición del dato que deseas reemplazar -> Ejemplo - (2).
+> Paso 5: Introduce el dato con el que deseas actualizar -> Ejemplo - (3).
+> Paso 6: Pulse cualquier tecla para salir y ver la nueva lista.
 > 
 Se incluyen las funciones de lectura y escritura de archivos CSV, la lectura viene por defecto, mientras que la escritura es una
 opción propia del menú, siendo ambas, estructuras consultadas aparte de lo mostrado en el curso.
