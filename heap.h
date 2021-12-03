@@ -20,7 +20,10 @@ class Heap{
         Heap(unsigned int);
         ~Heap();
         bool empty() const;
+        std::string toString() const;
         void push(T);
+        int top();
+        T pop();
         int size();
 		
 };
@@ -57,6 +60,25 @@ unsigned int Heap<T>::left(unsigned int pos) const{
 template <class T>
 unsigned int Heap<T>::right(unsigned int pos) const{
     return ((2 * pos) + 2);
+	
+}
+
+template <class T>
+std::string Heap<T>::toString() const{
+	std::stringstream aux;
+	aux << "[";	
+	for (unsigned int i = 0; i < count; i++){
+		if(i != 0){
+			aux << " ";
+			
+		} 
+		
+		aux << data[i];
+		
+	} 
+	
+	aux << "]";
+	return aux.str();
 	
 }
 
@@ -107,8 +129,34 @@ void Heap<T>::push(T val){
 }
 
 template <class T>
+T Heap<T>::pop(){
+    if(empty()){
+        return -1;
+		
+    }
+	
+    T aux = data[0];
+    data[0] = data[--count];
+    heapify(0);
+    return aux;
+	
+}
+
+template <class T>
+bool Heap<T>::empty() const{
+    return (count == 0);
+	
+}
+
+template <class T>
 int Heap<T>::size(){
     return count;
+	
+}
+
+template <class T>
+int Heap<T>::top(){
+    return data[0];
 	
 }
 

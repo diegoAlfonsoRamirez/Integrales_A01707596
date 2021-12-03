@@ -1,11 +1,24 @@
 #include "Sorts.h"
 #include "list.h"
-#include "lectorCSV.h"
 #include "lab.h"
 #include "heap.h"
+#include "quadratic.h"
+#include "graph.h"
+#include "lectorCSV.h"
+#include <string>
+#include <cstring>
 #include <iostream>
+#include <fstream>
 
-int main(){
+unsigned int myHash(const std::string s) {
+	unsigned int acum = 0;
+	for(unsigned int i = 0; i < s.size(); i++){
+		acum += (int) s[i];
+	}
+	return acum;
+}
+
+int main(int argc, char* argv[]){
 	std::vector<Lab> readFile = csvReader();
 	std::vector<Lab> vector;
 	Sort<Lab> bubbleSort;
@@ -15,7 +28,15 @@ int main(){
 	DList<int> e;
 	DList<int> r;
 	DList<int> t;
-	Heap<int> heap(20);
+	Heap<float> heap(readFile.size());
+	Quadratic <std::string, int> quad_hash(readFile.size(), std::string("empty"), myHash);
+	
+	for(int i = 0; i < readFile.size(); i++){
+		quad_hash.put(readFile[i].getName() + "_" + readFile[i].getJob() + "_" + std::to_string(readFile[i].getAge()) + "_" + std::to_string(readFile[i].getTimeY()), readFile[i].getRange());
+		
+	}
+	
+	
 	
 	for(int i = 0; i < readFile.size(); i++){
 		e.insertion(readFile[i].getAge());
@@ -32,18 +53,14 @@ int main(){
 		
 	}	
 	
-	for(int i = 0; i < readFile.size(); i++){
-		if(readFile[i].getRange() != -1){
-			heap.push(readFile[i].getTimeY());
-			
-		}		
-	}
-	
 	std::cout << "Bienvenido a la base de datos del laboratorio.\n";
 	std::cout << "Seleccione que desea hacer.\n";
 	std::cout << "1. Ordenar la base de datos.\n";
 	std::cout << "2. Buscar o actualizar un dato.\n";
-	std::cout << "3. Consultar el numero de empleados registrados.\n";
+	std::cout << "3. Agregar un nuevo empleado a la base.\n";
+	std::cout << "4. Consulta de personal en plantilla.\n";
+	std::cout << "5. Consulta del elemento mas antiguo.\n";
+	std::cout << "6. Conocer ruta de comunicacion entre personal.\n";
 	std::cout << "Pulse cualquier otra tecla para salir.\n";
 	
 	std::cin >> opt;
@@ -197,7 +214,7 @@ int main(){
 							break;
 							
 					}
-												
+
 				}
 				default:
 					break;
@@ -205,11 +222,51 @@ int main(){
 			break;
 				
 		}
-			
+		
 		case 3:
 		{
-			std::cout << "Empleados activos: " << heap.size() << std::endl;
+			std::ofstream lab;
+			lab.open("lista_laboratorio.csv");
+			lab << "name,range,age,job,time_y,\n";
+			for(int i = 0; i < readFile.size(); i++){
+				std::string b;
+				b = readFile[i].getName() + "," + std::to_string(readFile[i].getRange()) + "," + std::to_string(readFile[i].getAge()) + "," + readFile[i].getJob() + "," + std::to_string(readFile[i].getTimeY()) + std::string("\n");
+				lab << b;
+				
+			}
+			std::string a;
+			std::cout << "Introduzca el nombre, rango, edad, trabajo y tiempo trabajado del nuevo empleado, separado por una coma (,).\n";
+			std::cin >> a;
+			lab << a;
+			lab.close();
+			break;
 			
+		}
+		
+		case 4:
+		{
+			std::string a;
+			std::cout << "Introduzca el nombre, trabajo, edad y tiempo trabajado, separados por un (_) sin espacios.\n";
+			std::cin >> a;
+			if(quad_hash.contains(a) == 1){
+				std::cout << "El empleado se encuentra en la base de datos.";
+				
+			}else{
+				std::cout << "El empleado no se encuentra en la base de datos.";
+				
+			}
+			
+			break;
+			
+		}
+		
+		case 5:
+		{
+			for(int i = 0; i < readFile.size(); i++){
+				heap.push(readFile[i].getTimeY());
+				
+			}
+			std::cout << "El empleado que menos tiempo ha trabajado, trabajo: " << heap.top() << " años.\n";
 		}
 		
 		default:
